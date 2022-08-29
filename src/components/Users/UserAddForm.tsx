@@ -13,6 +13,7 @@ const UserAddForm = (
       setUsers: Dispatch<SetStateAction<IUser[]>>,
       users: IUser[]
     }) => {
+
   const [user, setUser] = useState(initialUser);
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
