@@ -15,9 +15,9 @@ const NavBar = () => {
               <Link className="nav-link" to="posts">Posts</Link>
             </li>
           </ul>
-          <button className="btn btn-primary" onClick={() => setOpenModal(true)}>
+          <Link to="login" className="btn btn-primary" onClick={() => setOpenModal(true)}>
             LogIn
-          </button>
+          </Link>
       </div>
     </nav>
   );

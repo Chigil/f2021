@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { IUser } from '../components/Users/IUser';
 import http from '../http';
 import UserCards from '../components/Users/UserCards';
