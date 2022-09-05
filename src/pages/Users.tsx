@@ -1,39 +1,21 @@
 import React, { FC, useEffect, useState } from 'react';
-import { IUser } from '../components/Users/IUser';
-import http from '../http';
 import UserCards from '../components/Users/UserCards';
-import UserAddForm from '../components/Users/UserAddForm';
 import { useSearch } from '../hooks/useSearh';
+import { useAction } from '../hooks/useAction';
+import { useTypedSelector } from '../hooks/useTypedSelectors';
 
 
 const Users: FC = () => {
-  const [users, setUsers] = useState<IUser[]>([]);
+  const { users } = useTypedSelector(state => state.users);
   const [search, setSearch] = useState('');
   const [showUserForm, setShowUserForm] = useState(false);
+  const { getUsers } = useAction();
 
   useEffect(() => {
     getUsers();
   }, []);
 
-  const getUsers = async () => {
-    try {
-      const users = await http.get('users');
-      setUsers(users.data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const deleteUser = async (id: number) => {
-    const isDelete = window.confirm('Do you really delete this user?');
-    if (isDelete) {
-      const deletedUser = await http.delete(`users/${id}`);
-      if (deletedUser.status === 200) {
-        setUsers(users.filter(user => user.id !== id));
-      }
-    }
-  };
-  const searchedUsers = useSearch(users, "name", search);
+  const searchedUsers = useSearch(users, 'name', search);
 
   return (
     <>
@@ -54,8 +36,9 @@ const Users: FC = () => {
       >
         Add new User
       </button>
-      {showUserForm && <UserAddForm setUsers={setUsers} users={users}/>}
-      <UserCards users={searchedUsers} deleteUser={deleteUser} />
+      { /* {showUserForm && <UserAddForm setUsers={setUsers} users={users}/>} */}
+
+      <UserCards/>
     </>
   );
 };
