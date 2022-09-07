@@ -11,10 +11,12 @@ export const getUsers = () => {
 
 export const deleteUser = (id: number) => {
   return async (dispatch: Dispatch<UsersAction>) => {
-    const response = await http.delete(`users/${id}`);
     const isDelete = window.confirm('Do you really delete this user?');
     if (isDelete) {
-      dispatch({ type: UserActionType.DELETE_USER, payload: response.status });
+      const response = await http.delete(`users/${id}`);
+      if (response.status === 200) {
+        dispatch({ type: UserActionType.DELETE_USER, payload: { id: id } });
+      }
     }
   };
 };

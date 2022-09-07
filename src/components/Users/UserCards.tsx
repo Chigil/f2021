@@ -4,9 +4,8 @@ import { useTypedSelector } from '../../hooks/useTypedSelectors';
 import { useAction } from '../../hooks/useAction';
 
 const UserCards = () => {
-  const { users, status } = useTypedSelector(state => state.users);
+  const { users } = useTypedSelector(state => state.users);
   const { deleteUser } = useAction();
-  console.log(status);
   return (
     <div className="row row-cols-1 row-cols-md-3 g-4">
       {users.length

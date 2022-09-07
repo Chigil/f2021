@@ -2,8 +2,6 @@ import { IUser } from '../../components/Users/IUser';
 
 export interface UserState {
   users: IUser[];
-  status?: number;
-  userId?: number;
 }
 
 export enum UserActionType {
@@ -18,7 +16,7 @@ interface GetUsersAction {
 
 interface DeleteUserAction {
   type: UserActionType.DELETE_USER
-  payload: number
+  payload: {id: number}
 }
 
 

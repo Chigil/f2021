@@ -2,8 +2,6 @@ import { UserActionType, UsersAction, UserState } from '../types/user';
 
 const initialState: UserState = {
   users: [],
-  status: 0,
-  userId: 0,
 };
 
 export const userReducer = (state = initialState, action: UsersAction): UserState => {
@@ -11,8 +9,7 @@ export const userReducer = (state = initialState, action: UsersAction): UserStat
     case UserActionType.GET_USERS:
       return { users: action.payload };
     case UserActionType.DELETE_USER:
-      const users = state.users.filter(user => user.id !== state.userId);
-      return { users: users, status: action.payload };
+      return { users: state.users.filter( user => user.id !== action.payload.id)};
     default:
       return state;
   }
