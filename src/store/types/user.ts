@@ -16,7 +16,7 @@ interface GetUsersAction {
 
 interface DeleteUserAction {
   type: UserActionType.DELETE_USER
-  payload: {id: number}
+  payload: { id: number }
 }
 
 
